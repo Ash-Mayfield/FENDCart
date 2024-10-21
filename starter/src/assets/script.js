@@ -50,12 +50,9 @@ const cart = [
 */
 //works
 function addProductToCart(productId) {
-  const item = products.find((product) => productId === productId);
+  const item = products.find(product => productId === productId);
   cart.push({productId, quantity: 1, price: 1 })
 }
-
-
-
 
 /*
 //did not work
@@ -73,7 +70,7 @@ const addProductToCart=(productId) => {
   }
 */
 
-/*
+/*worked but allows add item to increase qty
 function addProductToCart(productId) {
   let item = cart.findIndex(item => productId === productId);
   if (item !== -1) {
@@ -83,15 +80,13 @@ function addProductToCart(productId) {
   }
 }
 
-
-
 /*
  Create a function named increaseQuantity that takes in the productId as an argument
   - increaseQuantity should get the correct product based on the productId
   - increaseQuantity should then increase the product's quantity
 */
 
-
+//works but price does not increase correctly
 let increaseQuantity=(productId) =>{
   const item = cart.findIndex(item => productId === productId);
   if (item !== 1) {
@@ -106,7 +101,8 @@ let increaseQuantity=(productId) =>{
   - decreaseQuantity should decrease the quantity of the product
   - if the function decreases the quantity to 0, the product is removed from the cart
 
-*/
+
+//works but goes past 0 and incorrect increments for price(figure out how to fix after remove from cart fix)
 function decreaseQuantity(productId) {
   const item = cart.findIndex(item => productId === productId);
   if (item !== 1) {
@@ -115,8 +111,16 @@ function decreaseQuantity(productId) {
     cart.pop({productId, quantity: 1 });
   }
 }
+*/
 
-
+function decreaseQuantity(productId) {
+  const item = cart.findIndex(item => productId === productId);
+  if (item !== 1) {
+    cart[item].quantity--;
+  } else {
+    cart.pop({productId, quantity: 1 });
+  }
+}
 
 
 /*
@@ -166,28 +170,32 @@ function removeProductFromCart(productId) {
   }
 }
 */
-/*function removeProductFromCart(productId) {
-  for (let index = 0; index < cart.length; index += 1) {
-    if (cart[index].productId === productId) {
-      cart.splice(index, 1)
-      return
+function removeProductFromCart(productId) {
+  for (let i = 0; i < cart.length; i += 1) {
+    if (cart[i].productId === productId) {
+      cart.splice(i, 1)
     } 
   }
 }
-
+/*
 
 /* Create a function named cartTotal that has no parameters
   - cartTotal should iterate through the cart to get the total cost of all products
   - cartTotal should return the total cost of the products in the cart
   Hint: price and quantity can be used to determine total cost
 */
-let cartTotal = () => {
-  if (cart.length !==0){
-    let total = cart.map()
+//works to get total
+function cartTotal() {
+  let total = 0
+  for (let i = 0; i < cart.length; i++) {
+    const item = cart[i];
+    total += item.price * item.quantity;
   }
-  else return
-
+  return total;
 }
+
+
+
 /* Create a function called emptyCart that empties the products from the cart */
 /*
 function emptyCart(productId) {
@@ -197,24 +205,31 @@ function emptyCart(productId) {
     }
   }
 }
-*/
 
+//does not work
 function emptyCart() {
-  let cart = ["Strawberries", "Oranges", "Cherries"];
+  const cart = 0;
   cart.length =0; 
-  console.log(cart);
+  return cart;
 }
-
+*/
 
 /* Create a function named pay that takes in an amount as an argument
   - amount is the money paid by customer
   - pay will return a negative number if there is a remaining balance
   - pay will return a positive number if money should be returned to customer
   Hint: cartTotal function gives us cost of all the products in the cart  
-*/
-function pay(params) {
-  
+
+//not tested & incomplete
+function pay() {
+  let remainingbal = (cartTotal <= 0);
+  if (remainingbal <= 0) {
 }
+   return pay
+} 
+
+*/
+
 /* Place stand out suggestions here (stand out suggestions can be found at the bottom of the project rubric.)*/
 
 
