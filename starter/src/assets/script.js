@@ -17,19 +17,19 @@
 const products = [
   { name: "Strawberries", 
     price: 5, 
-    quantity: 0, 
+    quantity: 1, 
     productId: 787292, 
     image: "images/strawberry.jpg",
   },
   { name: "Oranges", 
     price: 6, 
-    quantity: 0, 
+    quantity: 1, 
     productId: 672643, 
     image: "images/orange.jpg",
   },
   { name: "Cherries", 
     price: 4, 
-    quantity:  0, 
+    quantity:  1, 
     productId: 249779, 
     image: "images/cherry.jpg", 
   },
@@ -48,13 +48,31 @@ const cart = [
 
 
 */
-//works
+//works but only one amount shows
+function addProductToCart(productId) {
+  const item = products.findIndex(product => productId === productId)
+   cart.push({productId, quantity: 1, price: 5 })
+}
+/*
+
 function addProductToCart(productId) {
   const item = products.find(product => productId === productId);
-  cart.push({productId, quantity: 1, price: 1 })
+   cart.push({productId, quantity: 1, price: 5})
+
 }
 
-/*
+function addProductToCart(productId) {
+  const item = products.findIndex(product => productId === productId);
+
+  for (let i = 0; i < cart.length; i++) {
+    if (productId == cart[i].name) {
+      products[i].quantity++;
+    }
+      cart.push({productId, quantity, price})
+  }
+}
+
+
 //did not work
 const addProductToCart=(productId) => {
   let item = cart.findIndex(value => value.productId === productId);
@@ -62,21 +80,25 @@ const addProductToCart=(productId) => {
     cart = [{
       productId: productId,
       quantity: 1
-    }];
+    }]
   } else if (item < 0) {}
     cart.push({
       productId: productId, quantity:1
-    });
+    })
   }
 */
 
-/*worked but allows add item to increase qty
+
+
+
+
+//worked but allows add item to increase qty
 function addProductToCart(productId) {
-  let item = cart.findIndex(item => productId === productId);
+  let item = cart.findIndex(item => productId === productId)
   if (item !== -1) {
-    cart[item].quantity;
+    cart[item].quantity++
   } else {
-    cart.push({productId, quantity:1, price:1});
+    cart.push({productId, quantity: 1, price: 1})
   }
 }
 
@@ -88,11 +110,11 @@ function addProductToCart(productId) {
 
 //works but price does not increase correctly
 let increaseQuantity=(productId) =>{
-  const item = cart.findIndex(item => productId === productId);
+  const item = cart.findIndex(item => productId === productId)
   if (item !== 1) {
-    cart[item].quantity++;
+    cart[item].quantity++
   } else {
-    cart.push({productId, quantity: 1 });
+    cart.push({productId, quantity: 1 })
   }
 }
 
@@ -101,18 +123,18 @@ let increaseQuantity=(productId) =>{
   - decreaseQuantity should decrease the quantity of the product
   - if the function decreases the quantity to 0, the product is removed from the cart
 
-
+*/
 //works but goes past 0 and incorrect increments for price(figure out how to fix after remove from cart fix)
 function decreaseQuantity(productId) {
-  const item = cart.findIndex(item => productId === productId);
+  const item = cart.findIndex(item => productId === productId)
   if (item !== 1) {
-    cart[item].quantity--;
+    cart[item].quantity--
   } else {
-    cart.pop({productId, quantity: 1 });
+    cart.pop({productId, quantity: 1 })
   }
 }
-*/
 
+/*
 function decreaseQuantity(productId) {
   const item = cart.findIndex(item => productId === productId);
   if (item !== 1) {
@@ -123,7 +145,7 @@ function decreaseQuantity(productId) {
 }
 
 
-/*
+
 //remove at zero
 let decreaseQuantity=(productId) => {
   let selectedItem = productId;
@@ -188,16 +210,16 @@ function removeProductFromCart(productId) {
 function cartTotal() {
   let total = 0
   for (let i = 0; i < cart.length; i++) {
-    const item = cart[i];
-    total += item.price * item.quantity;
+    const item = cart[i]
+    total += item.price * item.quantity
   }
-  return total;
+  return total
 }
 
 
 
 /* Create a function called emptyCart that empties the products from the cart */
-/*
+
 function emptyCart(productId) {
   for (let index = 0; index < cart.length; index +=1) {
     if (cart[index].productId === productId) {
@@ -205,7 +227,7 @@ function emptyCart(productId) {
     }
   }
 }
-
+/*
 //does not work
 function emptyCart() {
   const cart = 0;
@@ -219,16 +241,16 @@ function emptyCart() {
   - pay will return a negative number if there is a remaining balance
   - pay will return a positive number if money should be returned to customer
   Hint: cartTotal function gives us cost of all the products in the cart  
-
+*/
 //not tested & incomplete
 function pay() {
-  let remainingbal = (cartTotal <= 0);
+  let remainingbal = cartTotal % 0 
   if (remainingbal <= 0) {
 }
-   return pay
+   return 0
 } 
 
-*/
+
 
 /* Place stand out suggestions here (stand out suggestions can be found at the bottom of the project rubric.)*/
 
