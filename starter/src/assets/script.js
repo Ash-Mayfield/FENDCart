@@ -18,19 +18,19 @@ const products = [
   { name: "Strawberries", //string
     price: 5, 
     quantity: 0, //starts at 0
-    productId: 787292, 
+    productId: 0, 
     image: "images/strawberry.jpg",
   },
   { name: "Oranges", 
     price: 6, 
     quantity: 0, 
-    productId: 672643, 
+    productId: 1, 
     image: "images/orange.jpg",
   },
   { name: "Cherries", 
     price: 4, 
     quantity:  0, 
-    productId: 249779, 
+    productId: 2, 
     image: "images/cherry.jpg", //string
   },
 ];
@@ -60,10 +60,10 @@ function getProductByIdFromList(productId, productList) {
 //add to cart (but allows duplicates find fix)
 function addProductToCart(productId) {
   //check if in cart (did not work)
-    if (cart.some((product) => product.productId === productId)) {
-      increaseQuantity();
+    if (cart.some((item) => item.productId === productId)) {
+      alert("Item already in cart!")
     } else {
-      const item = products.find((product) => product.productId === productId);
+      const item = products.find((item) => item.productId === productId);
       
       cart.push({
         ...item,
