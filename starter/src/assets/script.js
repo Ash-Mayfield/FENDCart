@@ -184,11 +184,11 @@ function emptyCart() {
 */
 //not tested & incomplete
 function pay() {
-  let (totalPaid = 0);
-  totalPaid += amount;
-  let (remaining = totalPaid - cartTotal)();
+  let (totalPaid = 0)
+  totalPaid += amount
+  let (remaining = totalPaid - cartTotal)()
   if (remaining >= 0) {
-    totalPaid = 0;
+    totalPaid = 0
     emptyCart();
 }
    return remaining;
