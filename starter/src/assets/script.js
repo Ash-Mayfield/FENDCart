@@ -13,85 +13,69 @@
    - strawberry.jpg by Allec Gomes
 */
 
-//works
+//objects array works 
 const products = [
-  { name: "Strawberries", 
+  { name: "Strawberries", //string
     price: 5, 
-    quantity: 1, 
+    quantity: 0, //starts at 0
     productId: 787292, 
     image: "images/strawberry.jpg",
   },
   { name: "Oranges", 
     price: 6, 
-    quantity: 1, 
+    quantity: 0, 
     productId: 672643, 
     image: "images/orange.jpg",
   },
   { name: "Cherries", 
     price: 4, 
-    quantity:  1, 
+    quantity:  0, 
     productId: 249779, 
-    image: "images/cherry.jpg", 
+    image: "images/cherry.jpg", //string
   },
 ];
 
 /* Declare an empty array named cart to hold the items in the cart */
 
-//works
+//cart array works
 const cart = [
 ];
-
-/* Create a function named addProductToCart that takes in the product productId as an argument
+/* 
+Create a function named addProductToCart that takes in the product productId as an argument
   - addProductToCart should get the correct product based on the productId
   - addProductToCart should then increase the product's quantity
-  - if the product is not already in the cart, add it to the cart
+  - if the product is not already in the cart, add it to the cart (find a fix)
+
+
+
+
+//helper function 
+function getProductByIdFromList(productId, productList) {
+  return productList.find((product) => product.productId === productId);
+}
+
 
 
 */
-//works but only one amount shows
+//add to cart (but allows duplicates find fix)
 function addProductToCart(productId) {
-  const item = products.findIndex(product => productId === productId)
-   cart.push({productId, quantity: 1, price: 5 })
+  //check if in cart (did not work)
+    if (cart.some((product) => product.productId === productId)) {
+      increaseQuantity();
+    } else {
+      const item = products.find((product) => product.productId === productId);
+      
+      cart.push({
+        ...item,
+        quantity : 1
+    });
+
+      console.log(cart);
+  }
 }
+
+
 /*
-
-function addProductToCart(productId) {
-  const item = products.find(product => productId === productId);
-   cart.push({productId, quantity: 1, price: 5})
-
-}
-
-function addProductToCart(productId) {
-  const item = products.findIndex(product => productId === productId);
-
-  for (let i = 0; i < cart.length; i++) {
-    if (productId == cart[i].name) {
-      products[i].quantity++;
-    }
-      cart.push({productId, quantity, price})
-  }
-}
-
-
-//did not work
-const addProductToCart=(productId) => {
-  let item = cart.findIndex(value => value.productId === productId);
-  if (cart.length <= 0) {
-    cart = [{
-      productId: productId,
-      quantity: 1
-    }]
-  } else if (item < 0) {}
-    cart.push({
-      productId: productId, quantity:1
-    })
-  }
-*/
-
-
-
-
-
 //worked but allows add item to increase qty
 function addProductToCart(productId) {
   let item = cart.findIndex(item => productId === productId)
@@ -101,9 +85,9 @@ function addProductToCart(productId) {
     cart.push({productId, quantity: 1, price: 1})
   }
 }
+*/
 
-/*
- Create a function named increaseQuantity that takes in the productId as an argument
+/* Create a function named increaseQuantity that takes in the productId as an argument
   - increaseQuantity should get the correct product based on the productId
   - increaseQuantity should then increase the product's quantity
 */
@@ -220,12 +204,12 @@ function cartTotal() {
 
 /* Create a function called emptyCart that empties the products from the cart */
 
-function emptyCart(productId) {
-  for (let index = 0; index < cart.length; index +=1) {
-    if (cart[index].productId === productId) {
-    cart.splice(index, 1)
+function emptyCart() {
+  for (let i = 0; i < cart.length; i < 1) {
+    if (cart[i].productId === productId) {
     }
   }
+  
 }
 /*
 //does not work
