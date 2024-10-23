@@ -147,7 +147,7 @@ function decreaseQuantity(productId) {
 
 
 //remove at zero
-let decreaseQuantity=(productId) => {
+function decreaseQuantity(productId) {
   let selectedItem = productId;
   let search = cart.find((x) => x.productId === selectedItem.id);
   
