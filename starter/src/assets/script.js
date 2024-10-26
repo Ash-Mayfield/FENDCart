@@ -95,7 +95,7 @@ let increaseQuantity=(productId) =>{
   - decreaseQuantity should decrease the quantity of the product
   - if the function decreases the quantity to 0, the product is removed from the cart
 
-
+*/
 //works but goes past 0  
 let decreaseQuantity=(productId) =>{
   const item = cart.findIndex(item => productId === productId)
@@ -105,7 +105,7 @@ let decreaseQuantity=(productId) =>{
      removeProductFromCart(productId);
   }
 }
-*/
+/*
 let decreaseQuantity=(productId) =>{
   const item = cart.findIndex(item => productId === productId)
   if (item !== 1) {
@@ -114,7 +114,7 @@ let decreaseQuantity=(productId) =>{
     removeProductFromCart(productId);
   }
 }
-/*
+
  Create a function named removeProductFromCart that takes in the productId as an argument
   - removeProductFromCart should get the correct product based on the productId
   - removeProductFromCart should update the product quantity to 0
@@ -187,18 +187,17 @@ function pay() {
    return remaining;
 } 
 */
+//works but does not calculate paid correctly
 
-let totalPaid = 0
 function pay() {
-  
+  let totalPaid = 0;
   let remaining = totalPaid - cartTotal();
   if(remaining >= cartTotal) {
     totalPaid += amount;
-   
   }
-   return remaining;
+  return remaining;
 }
-emptyCart();
+  emptyCart();
  
 
 /*
