@@ -63,8 +63,7 @@ function addProductToCart(productId) {
     if (cart.some((item) => item.productId === productId)) {
       alert("Item already in cart!")
     } else {
-      const item = products.find((item) => item.productId === productId);
-      
+      const item = products.find((item) => item.productId === productId)
       cart.push({
         ...item,
         quantity : 1
@@ -96,7 +95,7 @@ let increaseQuantity=(productId) =>{
   - decreaseQuantity should decrease the quantity of the product
   - if the function decreases the quantity to 0, the product is removed from the cart
 
-*/
+
 //works but goes past 0  
 let decreaseQuantity=(productId) =>{
   const item = cart.findIndex(item => productId === productId)
@@ -106,7 +105,15 @@ let decreaseQuantity=(productId) =>{
      removeProductFromCart(productId);
   }
 }
-
+*/
+let decreaseQuantity=(productId) =>{
+  const item = cart.findIndex(item => productId === productId)
+  if (item !== 1) {
+    cart[productId].quantity--;
+  } if (cart[productId].quantity <= 1) {
+    removeProductFromCart(productId);
+  }
+}
 /*
  Create a function named removeProductFromCart that takes in the productId as an argument
   - removeProductFromCart should get the correct product based on the productId
@@ -143,12 +150,7 @@ function cartTotal() {
 /* Create a function called emptyCart that empties the products from the cart */
 //cart empties with removal of each item not sure how remove all at once works
 function emptyCart() {
-  for (let i = 0; i < cart.length; i < 1) {
-    if (cart[i].productId === products.productId) {
-    }
-    removeProductFromCart(products);
-  }
-  
+    removeProductFromCart(productId);
 }
 /*
 //does not work
@@ -164,8 +166,16 @@ function emptyCart() {
   - pay will return a negative number if there is a remaining balance
   - pay will return a positive number if money should be returned to customer
   Hint: cartTotal function gives us cost of all the products in the cart  
-*/
-//not tested & incomplete
+
+//incorrect calculations first try
+  function pay() {
+    let remaining = cartTotal % 0
+    if(remaining <= 0) {
+      return 0
+    }
+  }
+
+//not tested & incomplete revision did not work
 function pay() {
   let (totalPaid = 0)
   totalPaid += amount
@@ -176,10 +186,36 @@ function pay() {
 }
    return remaining;
 } 
+*/
+
+let totalPaid = 0
+function pay() {
+  
+  let remaining = totalPaid - cartTotal();
+  if(remaining >= cartTotal) {
+    totalPaid += amount;
+   
+  }
+   return remaining;
+}
+emptyCart();
+ 
+
+/*
 
 
 
-/* Place stand out suggestions here (stand out suggestions can be found at the bottom of the project rubric.)*/
+function pay() {
+  
+  let (remaining = totalPaid - cartTotal)()
+  if (remaining >= 0) {
+    totalPaid = 0
+    emptyCart();
+}
+   return remaining;
+} 
+*/
+/*  Place stand out suggestions here (stand out suggestions can be found at the bottom of the project rubric.)*/
 
 
 /* The following is for running unit tests. 
