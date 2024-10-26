@@ -69,7 +69,7 @@ function addProductToCart(productId) {
         ...item,
         quantity : 1
     });
-     //console.log(item);
+     //console.log();
   }
 }
 
@@ -80,16 +80,15 @@ function addProductToCart(productId) {
   - increaseQuantity should then increase the product's quantity
 */
 
-//works but price does not increase correctly
+//works to increase money and qty
 let increaseQuantity=(productId) =>{
   const item = cart.findIndex((item) => productId === productId)
   if (item !== 1) {
-    cart[productId].quantity++
+    cart[productId].quantity++;
   } else {
-    cart.push({productId, quantity: 1 });
+    addProductToCart(productId, quantity);
   }
-    console.log(item);
-  
+    //console.log();
 }
 
 /* Create a function named decreaseQuantity that takes in the productId as an argument
@@ -99,30 +98,14 @@ let increaseQuantity=(productId) =>{
 
 */
 //works but goes past 0  
-function decreaseQuantity(productId) {
+let decreaseQuantity=(productId) =>{
   const item = cart.findIndex(item => productId === productId)
-  if (item.productId !== 1) {
-    cart[productId].quantity--
+  if (item !== 1) {
+    cart[productId].quantity--;
   } else {
-    cart.pop(productId);
+     removeProductFromCart(productId);
   }
 }
-
-/*
-//remove at zero
-function decreaseQuantity(productId) {
-  let selectedItem = productId;
-  let search = cart.find((x) => x.productId === selectedItem.id);
-  
-  if (search === undefined) return;
-  else if (search.item === 0) return;
-  else {
-    search.item -= 1;
-  }
-  update(selectedItem.id);
-  cart = cart.filter((x) => x.item !== 0);
-};
-
 
 /*
  Create a function named removeProductFromCart that takes in the productId as an argument
