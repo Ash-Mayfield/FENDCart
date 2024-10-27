@@ -95,7 +95,7 @@ let increaseQuantity=(productId) =>{
   - decreaseQuantity should decrease the quantity of the product
   - if the function decreases the quantity to 0, the product is removed from the cart
 
-*/
+
 //works but goes past 0  
 let decreaseQuantity=(productId) =>{
   const item = cart.findIndex(item => productId === productId)
@@ -105,16 +105,18 @@ let decreaseQuantity=(productId) =>{
      removeProductFromCart(productId);
   }
 }
-/*
+*/
+
 let decreaseQuantity=(productId) =>{
   const item = cart.findIndex(item => productId === productId)
   if (item !== 1) {
     cart[productId].quantity--;
-  } if (cart[productId].quantity <= 1) {
-    removeProductFromCart(productId);
+  } else {
+     removeProductFromCart(productId);
   }
 }
-
+ 
+/*
  Create a function named removeProductFromCart that takes in the productId as an argument
   - removeProductFromCart should get the correct product based on the productId
   - removeProductFromCart should update the product quantity to 0
@@ -150,7 +152,7 @@ function cartTotal() {
 /* Create a function called emptyCart that empties the products from the cart */
 //cart empties with removal of each item not sure how remove all at once works
 function emptyCart() {
-    removeProductFromCart(productId);
+    removeProductFromCart(cart, products);
 }
 /*
 //does not work
@@ -167,53 +169,20 @@ function emptyCart() {
   - pay will return a positive number if money should be returned to customer
   Hint: cartTotal function gives us cost of all the products in the cart  
 
-//incorrect calculations first try
-  function pay() {
-    let remaining = cartTotal % 0
-    if(remaining <= 0) {
-      return 0
-    }
-  }
 
-//not tested & incomplete revision did not work
-function pay() {
-  let (totalPaid = 0)
-  totalPaid += amount
-  let (remaining = totalPaid - cartTotal)()
-  if (remaining >= 0) {
-    totalPaid = 0
-    emptyCart();
-}
-   return remaining;
-} 
 */
-//works but does not calculate paid correctly
-
-function pay() {
-  let totalPaid = 0;
+//works & calculates total correctly but does not update cart
+let totalPaid = 0;
+function pay(totalPaid) {
   let remaining = totalPaid - cartTotal();
   if(remaining >= cartTotal) {
     totalPaid += amount;
   }
   return remaining;
 }
-  emptyCart();
- 
-
-/*
 
 
 
-function pay() {
-  
-  let (remaining = totalPaid - cartTotal)()
-  if (remaining >= 0) {
-    totalPaid = 0
-    emptyCart();
-}
-   return remaining;
-} 
-*/
 /*  Place stand out suggestions here (stand out suggestions can be found at the bottom of the project rubric.)*/
 
 
