@@ -106,15 +106,33 @@ let decreaseQuantity=(productId) =>{
   }
 }
 */
-
+//test line 
 let decreaseQuantity=(productId) =>{
+
+  
+
+function decreaseQuantity(productId){
   const item = cart.findIndex(item => productId === productId)
-  if (item !== 1) {
-    cart[productId].quantity--;
-  } else {
-     removeProductFromCart(productId);
-  }
-}
+  cart = cart.map((item) => {
+  let quantity = item.quantity;
+   //pick out the item that we want to decrease quantity of
+  if(item.productId === productId){
+   if(item.quantity>1){
+     quantity--; 
+     console.log(quantity); 
+    }
+   }
+   if (item.productId === productId && item.quantity <= 1) {
+    cart = cart.filter((item) => item.productId != productId );
+   }
+  return {
+   ...item, 
+   quantity: quantity <= 0 ? 0 : quantity, 
+   // update quantity to 0 if it's already 1 or less
+   }; 
+  });
+  drawCart();
+ }
  
 /*
  Create a function named removeProductFromCart that takes in the productId as an argument
