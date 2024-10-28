@@ -29,7 +29,7 @@ const products = [
   },
   { name: "Cherries", 
     price: 4, 
-    quantity:  0, 
+    quantity: 0, 
     productId: 2, 
     image: "images/cherry.jpg", //string
   },
@@ -98,8 +98,8 @@ function increaseQuantity(productId) {
  */
 //works but goes past 0  
 function decreaseQuantity(productId) {
-  const item = cart.findIndex(item => item.productId === productId)
-  if (item !== 1) {
+  const item = cart.findIndex((item) => item.productId === productId)
+  if (item > 0) {
     cart[productId].quantity--;
   } else {
      removeProductFromCart(productId);
@@ -107,13 +107,13 @@ function decreaseQuantity(productId) {
 }
 /*
 //test line still not working
-function decreaseQuantity(productId){
+function decreaseQuantity(productId) {
   const item = cart.findIndex(item => productId === productId)
   cart = cart.map((item) => {
   let quantity = item.quantity;
    //pick out the item that we want to decrease quantity of
-  if(item.productId === productId){
-   if(item.quantity>1){
+  if(item.productId === productId) {
+   if(item.quantity>1) {
      quantity--; 
      console.log(quantity); 
     }
@@ -127,7 +127,7 @@ function decreaseQuantity(productId){
    // update quantity to 0 if it's already 1 or less
    }; 
   });
-  decreaseQuantity();
+  //decreaseQuantity();
  }
 
 
