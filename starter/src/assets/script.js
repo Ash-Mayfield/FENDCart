@@ -51,7 +51,7 @@ Create a function named addProductToCart that takes in the product productId as 
 
 //helper function 
 function getProductByIdFromList(productId, productList) {
-  return productList.find((product) => product.productId === productId);
+  return productList.find((product) >= product.productId === productId);
 }
 */
 
@@ -72,7 +72,7 @@ function addProductToCart(productId) {
   }
 }
 
-
+/*
 
 /* Create a function named increaseQuantity that takes in the productId as an argument
   - increaseQuantity should get the correct product based on the productId
@@ -80,7 +80,7 @@ function addProductToCart(productId) {
 */
 
 //works to increase money and qty
-let increaseQuantity=(productId) =>{
+function increaseQuantity(productId) {
   const item = cart.findIndex((item) => productId === productId)
   if (item !== 1) {
     cart[productId].quantity++;
@@ -97,7 +97,7 @@ let increaseQuantity=(productId) =>{
 
  */
 //works but goes past 0  
-let decreaseQuantity=(productId) =>{
+function decreaseQuantity(productId) {
   const item = cart.findIndex(item => item.productId === productId)
   if (item !== 1) {
     cart[productId].quantity--;
@@ -136,7 +136,7 @@ function decreaseQuantity(productId){
   - removeProductFromCart should update the product quantity to 0
   - removeProductFromCart should remove the product from the cart
 */
-
+//works to remove the product but the array may be removing wrong
 function removeProductFromCart(productId) {
   for (let i = 0; i < cart.length; i += 1) {
     if (cart[i].productId === productId) {
@@ -144,7 +144,10 @@ function removeProductFromCart(productId) {
     } 
   }
 }
+
+
 /*
+
 
 /* Create a function named cartTotal that has no parameters
   - cartTotal should iterate through the cart to get the total cost of all products
@@ -165,6 +168,8 @@ function cartTotal() {
 
 /* Create a function called emptyCart that empties the products from the cart */
 //cart empties with removal of each item not sure how remove all at once works
+
+
 function emptyCart() {
     removeProductFromCart(cart, products);
 }
@@ -172,10 +177,11 @@ function emptyCart() {
 //does not work
 function emptyCart() {
   const cart = 0;
-  cart.length =0; 
+  cart.length = 0; 
   return cart;
 }
 */
+
 
 /* Create a function named pay that takes in an amount as an argument
   - amount is the money paid by customer
@@ -187,6 +193,7 @@ function emptyCart() {
 */
 //works & calculates total correctly but does not update cart
 let totalPaid = 0;
+
 function pay(totalPaid) {
   let remaining = totalPaid - cartTotal();
   if(remaining >= cartTotal) {
@@ -195,6 +202,7 @@ function pay(totalPaid) {
   }
   return remaining;
 }
+ 
 
 
 
