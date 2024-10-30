@@ -88,6 +88,17 @@ function addProductToCart(productId) {
 /* Create a function named increaseQuantity that takes in the productId as an argument
   - increaseQuantity should get the correct product based on the productId
   - increaseQuantity should then increase the product's quantity
+
+//test
+function increaseQuantity(productId) {
+  let item = cart.find((item) => item.productId === productId)
+  if (item !== 1) {
+    cart[productId].quantity++;
+  } else {
+    addProductToCart(quantity);
+  }
+    //console.log();
+}
 */
 
 //works to increase money and qty
