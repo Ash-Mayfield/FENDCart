@@ -50,8 +50,19 @@ Create a function named addProductToCart that takes in the product productId as 
 
 
 //helper function 
-function getProductByIdFromList(productId, productList) {
-  return productList.find((product) >= product.productId === productId);
+
+//test
+function getProductById(productId, productList) {
+
+  return productList.find((product) => product.productId === productId);
+}
+
+function addProductToCart(productId) {
+  let product = getProductById(productId, products);
+  if(!cart.includes(product)) {
+    cart.push(product);
+  }
+  increaseQuantity(productId);
 }
 */
 
@@ -81,7 +92,7 @@ function addProductToCart(productId) {
 
 //works to increase money and qty
 function increaseQuantity(productId) {
-  const item = cart.findIndex((item) => productId === productId)
+  let item = cart.findIndex((item) => productId === productId)
   if (item !== 1) {
     cart[productId].quantity++;
   } else {
@@ -98,7 +109,7 @@ function increaseQuantity(productId) {
  */
 //works but goes past 0  
 function decreaseQuantity(productId) {
-  const item = cart.findIndex((item) => item.productId === productId)
+  let item = cart.findIndex((item) => item.productId === productId)
   if (item > 0) {
     cart[productId].quantity--;
   } else {
@@ -158,7 +169,7 @@ function removeProductFromCart(productId) {
 function cartTotal() {
   let total = 0
   for (let i = 0; i < cart.length; i++) {
-    const item = cart[i]
+    let item = cart[i]
     total += item.price * item.quantity
   }
   return total
@@ -176,11 +187,16 @@ function emptyCart() {
 /*
 //does not work
 function emptyCart() {
-  const cart = 0;
-  cart.length = 0; 
-  return cart;
+  let i = cart.length
+  while (i--) {
+    ...
+    if (...) {
+      removeProductFromCart();
 }
-*/
+  }
+  
+}
+
 
 
 /* Create a function named pay that takes in an amount as an argument
@@ -190,7 +206,7 @@ function emptyCart() {
   Hint: cartTotal function gives us cost of all the products in the cart  
 
 
-*/
+
 //works & calculates total correctly but does not update cart
 let totalPaid = 0;
 
@@ -202,7 +218,19 @@ function pay(totalPaid) {
   }
   return remaining;
 }
- 
+*/ 
+
+ let totalPaid = 0;
+
+function pay(amount) {
+  totalPaid += amount;
+   let remaining = totalPaid - cartTotal(); 
+  if (remaining >= 0) {
+    totalPaid = 0;
+    emptyCart();
+  }
+  return remaining;
+} 
 
 
 
