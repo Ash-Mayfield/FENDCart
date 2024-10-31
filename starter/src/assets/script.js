@@ -47,7 +47,7 @@ Create a function named addProductToCart that takes in the product productId as 
   - if the product is not already in the cart, add it to the cart (find a fix)
 
 
-
+let product = getProductByIdFromList(productId, cart);
 
 //helper function 
 
@@ -65,8 +65,6 @@ function addProductToCart(productId) {
   increaseQuantity(productId);
 }
 */
-
-
 
 //add to cart works
 function addProductToCart(productId) {
@@ -111,8 +109,8 @@ function increaseQuantity(productId) {
   }
     //console.log();
 }
-
-/* Create a function named decreaseQuantity that takes in the productId as an argument
+/*
+ Create a function named decreaseQuantity that takes in the productId as an argument
   - decreaseQuantity should get the correct product based on the productId
   - decreaseQuantity should decrease the quantity of the product
   - if the function decreases the quantity to 0, the product is removed from the cart
@@ -191,11 +189,13 @@ function cartTotal() {
 /* Create a function called emptyCart that empties the products from the cart */
 //cart empties with removal of each item not sure how remove all at once works
 
-
-function emptyCart() {
-    removeProductFromCart(cart, products);
-}
 /*
+function emptyCart() {
+    removeProductFromCart(cart);
+}
+console.log(emptyCart);
+*/
+
 //does not work
 function emptyCart() {
   let i = cart.length
@@ -203,7 +203,7 @@ function emptyCart() {
     ...
     if (...) {
       removeProductFromCart();
-}
+    }
   }
   
 }
@@ -241,8 +241,8 @@ function pay(amount) {
     emptyCart();
   }
   return remaining;
-} 
-
+}
+ 
 
 
 /*  Place stand out suggestions here (stand out suggestions can be found at the bottom of the project rubric.)*/
