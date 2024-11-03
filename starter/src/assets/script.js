@@ -18,19 +18,19 @@ const products = [
   { name: "Strawberries", //string
     price: 5, 
     quantity: 0, //starts at 0
-    productId: 0, 
+    productId: 787292, 
     image: "images/strawberry.jpg",
   },
   { name: "Oranges", 
     price: 6, 
     quantity: 0, 
-    productId: 1, 
+    productId: 672643, 
     image: "images/orange.jpg",
   },
   { name: "Cherries", 
     price: 4, 
     quantity: 0, 
-    productId: 2, 
+    productId: 249779, 
     image: "images/cherry.jpg", //string
   },
 ];
@@ -44,29 +44,20 @@ const cart = [
 Create a function named addProductToCart that takes in the product productId as an argument
   - addProductToCart should get the correct product based on the productId
   - addProductToCart should then increase the product's quantity
-  - if the product is not already in the cart, add it to the cart (find a fix)
+  - if the product is not already in the cart, add it to the cart
 
 
-let product = getProductByIdFromList(productId, cart);
-
-//helper function 
-
-//test
-function getProductById(productId, productList) {
-
-  return productList.find((product) => product.productId === productId);
-}
-
-function addProductToCart(productId) {
-  let product = getProductById(productId, products);
-  if(!cart.includes(product)) {
-    cart.push(product);
-  }
-  increaseQuantity(productId);
-}
 */
+//helper function to find product by Id 
+function findProductById(productId) {
+  return products.find((p) => p.productId === productId);
+}
 
-//add to cart works
+
+
+
+
+//does not allow add button to increase qty
 function addProductToCart(productId) {
   //check if in cart 
     if (cart.some((item) => item.productId === productId)) {
@@ -77,88 +68,80 @@ function addProductToCart(productId) {
         ...item,
         quantity : 1
     });
-     //console.log();
+     console.log(cart);
   }
 }
 
 /*
+//add to cart works but allows add button to increase qty
+function addProductToCart(productId) {
+  let product = findProductById(productId, products);
+  if(!cart.includes(productId, product)) {
+    cart.push(product);
+  }
+  increaseQuantity(productId);
+}
 
+*/
 /* Create a function named increaseQuantity that takes in the productId as an argument
   - increaseQuantity should get the correct product based on the productId
   - increaseQuantity should then increase the product's quantity
-
-//test
-function increaseQuantity(productId) {
-  let item = cart.find((item) => item.productId === productId)
-  if (item !== 1) {
-    cart[productId].quantity++;
-  } else {
-    addProductToCart(quantity);
-  }
-    //console.log();
-}
 */
+
 
 //works to increase money and qty
 function increaseQuantity(productId) {
-  let item = cart.findIndex((item) => productId === productId)
-  if (item !== 1) {
-    cart[productId].quantity++;
-  } else {
-    addProductToCart(productId, quantity);
-  }
+  let item = cart.findIndex((item) => item.productId === productId);
+  if (item > -1 ) {
+    cart[item].quantity++;
+    if (cart[item].quantity === 0) {
+    addProductToCart(productId);
+    }
     //console.log();
+  }
 }
-/*
- Create a function named decreaseQuantity that takes in the productId as an argument
+
+
+/* Create a function named decreaseQuantity that takes in the productId as an argument
   - decreaseQuantity should get the correct product based on the productId
   - decreaseQuantity should decrease the quantity of the product
   - if the function decreases the quantity to 0, the product is removed from the cart
-
  */
-//works but goes past 0  
+
+
+//works to decrease and remove at 0
 function decreaseQuantity(productId) {
-  let item = cart.findIndex((item) => item.productId === productId)
-  if (item > 0) {
-    cart[productId].quantity--;
-  } else {
-     removeProductFromCart(productId);
+  const productIndex = cart.findIndex((product) => product.productId === productId);
+  if ( productIndex === -1) {
+    return "Product not found in cart";
+  }
+
+  cart[productIndex].quantity--;
+  if (cart[productIndex].quantity === 0) {
+    cart.splice(productIndex, 1);
+    return "Product removed from cart";
+  } else { 
+    return "Quantity decreased for product";
   }
 }
-/*
-//test line still not working
-function decreaseQuantity(productId) {
-  const item = cart.findIndex(item => productId === productId)
-  cart = cart.map((item) => {
-  let quantity = item.quantity;
-   //pick out the item that we want to decrease quantity of
-  if(item.productId === productId) {
-   if(item.quantity>1) {
-     quantity--; 
-     console.log(quantity); 
-    }
-   }
-   if (item.productId === productId && item.quantity <= 1) {
-    cart = cart.filter((item) => item.productId != productId );
-   }
-  return {
-   ...item, 
-   quantity: quantity <= 0 ? 0 : quantity, 
-   // update quantity to 0 if it's already 1 or less
-   }; 
-  });
-  //decreaseQuantity();
- }
 
 
- Create a function named removeProductFromCart that takes in the productId as an argument
+/* Create a function named removeProductFromCart that takes in the productId as an argument
   - removeProductFromCart should get the correct product based on the productId
   - removeProductFromCart should update the product quantity to 0
   - removeProductFromCart should remove the product from the cart
 */
 //works to remove the product but the array may be removing wrong
 function removeProductFromCart(productId) {
-  for (let i = 0; i < cart.length; i += 1) {
+  for (let i = 0; i < cart.length; i++) {
+    if (cart[i].productId === productId) {
+      cart.splice(i, 1)
+    } 
+  }
+}
+/*
+function removeProductFromCart(productId) {
+  for (let i = 0; i < cart.length; i++) {
     if (cart[i].productId === productId) {
       cart.splice(i, 1)
     } 
@@ -166,7 +149,6 @@ function removeProductFromCart(productId) {
 }
 
 
-/*
 
 
 /* Create a function named cartTotal that has no parameters
@@ -179,7 +161,7 @@ function cartTotal() {
   let total = 0
   for (let i = 0; i < cart.length; i++) {
     let item = cart[i]
-    total += item.price * item.quantity
+    total += item.price * item.quantity;
   }
   return total
 }
@@ -193,19 +175,12 @@ function cartTotal() {
 function emptyCart() {
     removeProductFromCart(cart);
 }
-console.log(emptyCart);
-*/
+//console.log(emptyCart);
 
-//does not work
+*/
+//test
 function emptyCart() {
-  let i = cart.length
-  while (i--) {
-    ...
-    if (...) {
-      removeProductFromCart();
-    }
-  }
-  
+  cart.length = 0;
 }
 
 
@@ -217,21 +192,10 @@ function emptyCart() {
   Hint: cartTotal function gives us cost of all the products in the cart  
 
 
-
-//works & calculates total correctly but does not update cart
-let totalPaid = 0;
-
-function pay(totalPaid) {
-  let remaining = totalPaid - cartTotal();
-  if(remaining >= cartTotal) {
-    totalPaid += amount;
-    emptyCart();
-  }
-  return remaining;
-}
 */ 
+//works & calculates total correctly but does not update cart
 
- let totalPaid = 0;
+let totalPaid = 0;
 
 function pay(amount) {
   totalPaid += amount;
